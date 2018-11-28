@@ -1,15 +1,28 @@
 # frozen_string_literal: true
 
-require 'rspec'
+require './spec_helper'
 require_relative '../lib/list_reverse'
 
-describe 'Reverse linked list' do
-  before { @list_link = ListNode.new }
+RSpec.describe ListNode do
+  let(:linked_list) { described_class.new((1..5).to_a + 'NULL')}	
 
-  it 'should return list with elements separated by \'->\'' do
-    expect(@list_link.generate_list([1, 2, 3, 4, 5, 'NULL'])).to eq '1->2->3->4->5->NULL'
+  describe '#generate_list' do
+    context 'should return list with elements separated by \'->\'' do
+      before { result = ((1..5).to_a + 'NULL').join('->') }
+
+ 	  it 'return valid list' do
+ 	    expect(linked_list.generate_list).to eq result
+  	  end
+  	end
   end
-  it 'should return reversed list with last element equeal NULL' do
-    expect(@list_link.reverse_list('1->2->3->4->5->NULL')).to eq '5->4->3->2->1->NULL'
+
+  describe '#reverse_list'
+  	context 'should return reversed list with last element equeal NULL' do
+      before { result = ((1..5).to_a.reverse + 'NULL').join('->') }
+
+	  it 'return valid reversed list' do
+		expect(linked_list.reverse_list).to eq result
+	  end
+	end
   end
 end

@@ -3,8 +3,8 @@
 # Definition for singly-linked list.
 class ListNode
   attr_accessor :val, :next
-  def initialize
-    @val = [1, 2, 3, 4, 5, 'NULL']
+  def initialize(val)
+    @val = val
     @next = nil
   end
 
@@ -13,21 +13,21 @@ class ListNode
   end
 
   def run
-    linked_list = generate_list(@val)
-    show_linked_list(linked_list)
-    @next = reverse_list(linked_list)
+    generate_list
+    show_linked_list
+    @next = reverse_list
     show_reversed_linked_list
   end
 
-  def generate_list(value)
+  def generate_list
     value.join('->')
   end
 
-  def show_linked_list(linked_list)
+  def show_linked_list
     print "#{linked_list}\n"
   end
 
-  def reverse_list(linked_list)
+  def reverse_list
     linked_list.split('->').reverse.rotate.join('->')
   end
 
@@ -36,4 +36,4 @@ class ListNode
   end
 end
 
-ListNode.run
+ListNode.run((1..5).to_a + 'NULL')
